@@ -1756,7 +1756,7 @@ body.rounded-btns .field-group .label {
   bottom: 0;
   z-index: 9999999;
   background: var(--clr-dark-blue);
-  background-image: url("/katkizlaundry/assets/images/loader.png");
+  background-image: url("/katkizlaundry/assets/images/loade.png");
   background-repeat: no-repeat;
   background-position: center;
 }
