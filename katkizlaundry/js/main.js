@@ -1,9 +1,9 @@
 /*===================================================
-Project: Cleanso - Cleaning Services Company HTML5 Template
-Auther: aminThemes
+Project: KatKiz Laundry
+Author: DeH2O
 Version: 1.0
-Last change: 29 September 2021
-Template Description: Cleaning Services Company HTML5 Template
+Last change: 18 September 2023
+Project Description: Cleaning Services Company Website and App
 ====================================================*/
 
 //GLOBAL VARIBALES
@@ -1022,41 +1022,30 @@ $(function () {
 
   /*-----------------  End Percentage loading screen interactions -----------------  */
 
-//Scrollable Active Nav Start
+  //Scrollable Active Nav Start
 
-// Get all sections that have an ID defined
-const sections = document.querySelectorAll("section[id]");
-
-// Add an event listener listening for scroll
-window.addEventListener("scroll", navHighlighter);
-
-function navHighlighter() {
-  
-  // Get current scroll position
-  let scrollY = window.pageYOffset;
-  
-  // Now we loop through sections to get height, top and ID values for each
-  sections.forEach(current => {
-    const sectionHeight = current.offsetHeight;
-    const sectionTop = current.offsetTop - 50;
-    sectionId = current.getAttribute("id");
+  function updateActiveTab() {
+    const tabs = document.querySelectorAll("#nav-tabs li a");
     
-    /*
-    - If our current scroll position enters the space where current section on screen is, add .active class to corresponding navigation link, else remove it
-    - To know which link needs an active class, we use sectionId variable we are getting while looping through sections as an selector
-    */
-    if (
-      scrollY > sectionTop &&
-      scrollY <= sectionTop + sectionHeight
-    ){
-      document.querySelector(".menu-navbar a[href*=" + sectionId + "]").classList.add("active");
-    } else {
-      document.querySelector(".menu-navbar a[href*=" + sectionId + "]").classList.remove("active");
-    }
-  });
-}
+    tabs.forEach(tab => {
+        const sectionId = tab.getAttribute("href").substring(1); // Get the target section's ID
+        const section = document.getElementById(sectionId);
+        
+        if (section.offsetTop <= window.scrollY && 
+            section.offsetTop + section.offsetHeight > window.scrollY) {
+            tab.classList.add(" active");
+        } else {
+            tab.classList.remove(" active");
+        }
+    });
+  }
 
-//Scrollable Active Nav END
+  // Add a scroll event listener to update the active tab on scroll
+  window.addEventListener("scroll", updateActiveTab);
+
+  // Initial call to set the active tab on page load
+  window.addEventListener("load", updateActiveTab);
+  //Scrollable Active Nav END
 
 
 
